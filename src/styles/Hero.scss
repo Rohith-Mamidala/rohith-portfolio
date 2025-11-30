@@ -1,0 +1,200 @@
+@import './variables.scss';
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: $dark;
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: $spacing-2xl $spacing-lg;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-greeting {
+    font-size: 1.25rem;
+    color: $text-secondary;
+    margin-bottom: $spacing-sm;
+    font-weight: 500;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, $primary, $secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: $spacing-md;
+    line-height: 1.2;
+  }
+
+  .hero-role {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: $text-primary;
+    font-weight: 700;
+    margin-bottom: $spacing-sm;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: $text-muted;
+    margin-bottom: $spacing-xl;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-xl;
+
+    .btn {
+      padding: $spacing-md $spacing-xl;
+      border-radius: $radius-md;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all $transition-normal;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+
+      &.btn-primary {
+        background: linear-gradient(135deg, $primary, $primary-dark);
+        color: white;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+      }
+
+      &.btn-secondary {
+        background: transparent;
+        border: 2px solid $primary;
+        color: $primary;
+
+        &:hover {
+          background: $primary;
+          color: white;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  .hero-social {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+
+    .social-link {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: $dark-light;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $text-secondary;
+      transition: all $transition-normal;
+
+      &:hover {
+        background: $primary;
+        color: white;
+        transform: translateY(-4px);
+      }
+    }
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: $spacing-xl;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .scroll-icon {
+      color: $text-muted;
+      animation: bounce 2s infinite;
+    }
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: float 20s infinite ease-in-out;
+
+      &.orb-1 {
+        width: 400px;
+        height: 400px;
+        background: $primary;
+        top: -100px;
+        left: -100px;
+      }
+
+      &.orb-2 {
+        width: 500px;
+        height: 500px;
+        background: $secondary;
+        bottom: -150px;
+        right: -150px;
+        animation-delay: -5s;
+      }
+
+      &.orb-3 {
+        width: 300px;
+        height: 300px;
+        background: $accent;
+        top: 50%;
+        right: 10%;
+        animation-delay: -10s;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}

@@ -1,0 +1,207 @@
+@import './variables.scss';
+
+.contact {
+  padding: $spacing-2xl $spacing-lg;
+  background: $dark;
+  min-height: 100vh;
+
+  .contact-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: $text-primary;
+      margin-bottom: $spacing-md;
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, $primary, $secondary);
+      margin: 0 auto $spacing-md;
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: $text-muted;
+      font-size: 1.125rem;
+    }
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .contact-info {
+    .contact-info-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $text-primary;
+      margin-bottom: $spacing-md;
+    }
+
+    .contact-info-text {
+      color: $text-secondary;
+      font-size: 1.125rem;
+      line-height: 1.8;
+      margin-bottom: $spacing-xl;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+
+      .contact-detail {
+        display: flex;
+        align-items: center;
+        gap: $spacing-md;
+        padding: $spacing-md;
+        background: $dark-light;
+        border: 1px solid $border;
+        border-radius: $radius-md;
+        text-decoration: none;
+        transition: all $transition-normal;
+
+        &:hover {
+          border-color: $primary;
+          transform: translateX(8px);
+          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
+
+          .detail-icon {
+            background: linear-gradient(135deg, $primary, $secondary);
+            color: white;
+          }
+        }
+
+        .detail-icon {
+          flex-shrink: 0;
+          width: 48px;
+          height: 48px;
+          border-radius: $radius-md;
+          background: $dark;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $primary;
+          transition: all $transition-normal;
+        }
+
+        .detail-content {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          .detail-label {
+            font-size: 0.875rem;
+            color: $text-muted;
+            font-weight: 500;
+          }
+
+          .detail-value {
+            font-size: 1rem;
+            color: $text-primary;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .contact-form-wrapper {
+    background: $dark-light;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: $spacing-xl;
+
+    .contact-form {
+      .form-group {
+        margin-bottom: $spacing-lg;
+
+        label {
+          display: block;
+          color: $text-primary;
+          font-weight: 600;
+          margin-bottom: $spacing-xs;
+          font-size: 0.875rem;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: $spacing-md;
+          background: $dark;
+          border: 1px solid $border;
+          border-radius: $radius-md;
+          color: $text-primary;
+          font-size: 1rem;
+          font-family: inherit;
+          transition: all $transition-normal;
+
+          &:focus {
+            outline: none;
+            border-color: $primary;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+          }
+
+          &::placeholder {
+            color: $text-muted;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 120px;
+        }
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: $spacing-md $spacing-xl;
+        background: linear-gradient(135deg, $primary, $secondary);
+        color: white;
+        border: none;
+        border-radius: $radius-md;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-xs;
+        transition: all $transition-normal;
+
+        &:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
+        &.success {
+          background: linear-gradient(135deg, $secondary, #059669);
+        }
+
+        &.error {
+          background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+      }
+    }
+  }
+}

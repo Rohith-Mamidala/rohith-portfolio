@@ -1,0 +1,105 @@
+@import './variables.scss';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  transition: all $transition-normal;
+
+  &.scrolled {
+    background: rgba(15, 23, 42, 0.95);
+    box-shadow: $shadow-md;
+  }
+
+  .navbar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: $spacing-md $spacing-lg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-logo {
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, $primary, $secondary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: $spacing-lg;
+
+    &.desktop {
+      @media (max-width: $breakpoint-md) {
+        display: none;
+      }
+    }
+
+    &.mobile {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: $dark;
+      flex-direction: column;
+      padding: $spacing-lg;
+      gap: $spacing-md;
+      border-top: 1px solid $border;
+      box-shadow: $shadow-lg;
+
+      @media (min-width: $breakpoint-md) {
+        display: none;
+      }
+    }
+
+    .nav-link {
+      color: $text-secondary;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color $transition-fast;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $primary;
+        transition: width $transition-normal;
+      }
+
+      &:hover {
+        color: $primary;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $text-primary;
+    cursor: pointer;
+    padding: $spacing-xs;
+
+    @media (max-width: $breakpoint-md) {
+      display: block;
+    }
+  }
+}

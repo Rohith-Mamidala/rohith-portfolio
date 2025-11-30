@@ -1,0 +1,199 @@
+@import './variables.scss';
+
+.footer {
+  background: $dark-light;
+  border-top: 1px solid $border;
+  padding: $spacing-2xl $spacing-lg $spacing-lg;
+
+  .footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
+    padding-bottom: $spacing-2xl;
+    border-bottom: 1px solid $border;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .footer-brand {
+    .footer-logo {
+      font-size: 1.75rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, $primary, $secondary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: $spacing-xs;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform $transition-normal;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .footer-tagline {
+      color: $text-secondary;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: $spacing-xs;
+    }
+
+    .footer-description {
+      color: $text-muted;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+  }
+
+  .footer-links {
+    .footer-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: $text-primary;
+      margin-bottom: $spacing-md;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+
+      .footer-link {
+        color: $text-secondary;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: all $transition-fast;
+        display: inline-block;
+
+        &:hover {
+          color: $primary;
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  .footer-contact {
+    .footer-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: $text-primary;
+      margin-bottom: $spacing-md;
+    }
+
+    .footer-contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-sm;
+      margin-bottom: $spacing-md;
+
+      .footer-contact-item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+        color: $text-secondary;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color $transition-fast;
+
+        &:hover {
+          color: $primary;
+        }
+
+        svg {
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    .footer-social {
+      display: flex;
+      gap: $spacing-sm;
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: $radius-md;
+        background: $dark;
+        border: 1px solid $border;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-secondary;
+        text-decoration: none;
+        transition: all $transition-normal;
+
+        &:hover {
+          background: $primary;
+          border-color: $primary;
+          color: white;
+          transform: translateY(-4px);
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-copyright {
+      color: $text-muted;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .heart-icon {
+        color: #ef4444;
+        animation: heartbeat 1.5s infinite;
+      }
+    }
+
+    .footer-availability {
+      color: $text-muted;
+      font-size: 0.875rem;
+      padding: $spacing-xs $spacing-md;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: $radius-sm;
+      font-weight: 600;
+    }
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+}

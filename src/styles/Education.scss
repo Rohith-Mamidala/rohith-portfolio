@@ -1,0 +1,213 @@
+@import './variables.scss';
+
+.education {
+  padding: $spacing-2xl $spacing-lg;
+  background: $dark-light;
+  min-height: 100vh;
+
+  .education-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: $text-primary;
+      margin-bottom: $spacing-md;
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, $primary, $secondary);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+  }
+
+  .education-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .subsection-title {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: $spacing-xl;
+
+    svg {
+      color: $primary;
+    }
+  }
+
+  .education-timeline {
+    .timeline {
+      position: relative;
+      padding-left: $spacing-xl;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, $primary, $secondary);
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-bottom: $spacing-xl;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+
+        .timeline-marker {
+          position: absolute;
+          left: -$spacing-xl;
+          top: 0;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: $primary;
+          border: 3px solid $dark-light;
+          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+          z-index: 1;
+        }
+
+        .timeline-content {
+          background: $dark;
+          border: 1px solid $border;
+          border-radius: $radius-lg;
+          padding: $spacing-lg;
+          transition: all $transition-normal;
+
+          &:hover {
+            border-color: $primary;
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+          }
+
+          .timeline-date {
+            display: flex;
+            align-items: center;
+            gap: $spacing-xs;
+            color: $primary;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: $spacing-sm;
+
+            svg {
+              flex-shrink: 0;
+            }
+          }
+
+          .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: $text-primary;
+            margin-bottom: $spacing-xs;
+          }
+
+          .timeline-institution {
+            color: $text-secondary;
+            font-size: 1rem;
+            margin-bottom: $spacing-xs;
+          }
+
+          .timeline-location {
+            color: $text-muted;
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+  }
+
+  .certifications {
+    .cert-grid {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+
+      .cert-card {
+        background: $dark;
+        border: 1px solid $border;
+        border-radius: $radius-lg;
+        padding: $spacing-lg;
+        display: flex;
+        gap: $spacing-md;
+        align-items: flex-start;
+        transition: all $transition-normal;
+
+        &:hover {
+          border-color: $secondary;
+          transform: translateX(-8px);
+          box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+
+          .cert-icon {
+            background: linear-gradient(135deg, $secondary, #059669);
+            color: white;
+            transform: scale(1.1) rotate(-5deg);
+          }
+        }
+
+        .cert-icon {
+          flex-shrink: 0;
+          width: 48px;
+          height: 48px;
+          border-radius: $radius-md;
+          background: $dark-light;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $secondary;
+          transition: all $transition-normal;
+        }
+
+        .cert-content {
+          flex: 1;
+
+          .cert-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: $text-primary;
+            margin-bottom: $spacing-xs;
+            line-height: 1.4;
+          }
+
+          .cert-org {
+            color: $text-secondary;
+            font-size: 0.875rem;
+            margin-bottom: $spacing-xs;
+          }
+
+          .cert-id {
+            color: $text-muted;
+            font-size: 0.75rem;
+            font-family: monospace;
+            background: $dark-light;
+            padding: 2px 8px;
+            border-radius: $radius-sm;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
