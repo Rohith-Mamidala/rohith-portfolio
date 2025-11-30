@@ -74,7 +74,7 @@ const Footer = () => {
           <p className="footer-copyright">
             {currentYear} {personalInfo.name}. Built with <Heart size={14} className="heart-icon" /> using React, TypeScript & SCSS
           </p>
-          <p className="footer-availability">Available for Freelance Projects</p>
+          {/* <p className="footer-availability">Available for Freelance Projects</p> */}
         </div>
       </div>
     </footer>

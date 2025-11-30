@@ -1,4 +1,5 @@
-@import './variables.scss';
+@use './variables' as *;
+
 
 .contact {
   padding: $spacing-2xl $spacing-lg;

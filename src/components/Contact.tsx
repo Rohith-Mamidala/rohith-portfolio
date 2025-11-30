@@ -56,9 +56,9 @@ const Contact = () => {
         >
           <h2 className="section-title">Get In Touch</h2>
           <div className="section-divider"></div>
-          <p className="section-subtitle">
+          {/* <p className="section-subtitle">
             Available for freelance projects and collaboration opportunities
-          </p>
+          </p> */}
         </motion.div>
 
         <div className="contact-content">
@@ -69,9 +69,9 @@ const Contact = () => {
             className="contact-info"
           >
             <h3 className="contact-info-title">Let's Work Together</h3>
-            <p className="contact-info-text">
+            {/* <p className="contact-info-text">
               I'm currently available for freelance work and exciting projects. Whether you need a full-stack developer for your team or want to discuss a project idea, feel free to reach out!
-            </p>
+            </p> */}
 
             <div className="contact-details">
               <a href={`mailto:${contactInfo.email}`} className="contact-detail">

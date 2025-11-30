@@ -23,9 +23,11 @@ export interface Education {
 export interface Certificate {
   title: string;
   organization: string;
-  id?: string;
+  id?: string;            // Credential ID
+  issued?: string;        // Issue date
+  skills?: string[];      // Skills covered
+  description?: string;
 }
-
 export interface ContactFormData {
   name: string;
   email: string;

@@ -56,7 +56,7 @@ const About = () => {
         >
           <p>{personalInfo.about}</p>
           <div className="about-highlight">
-            <span className="highlight-badge">Available for Freelancing</span>
+            <span className="highlight-badge">Open for Collaboration</span>
             <p className="highlight-text">
               Open to exciting projects and collaboration opportunities
             </p>

@@ -69,6 +69,7 @@ export const projects: Project[] = [
       'Part of a 9-member team, handling schema + performance tuning',
     ],
     category: 'Web',
+    status: 'Ongoing',
   },
   {
     id: 4,
@@ -81,7 +82,7 @@ export const projects: Project[] = [
       'Integrated secure login & reporting',
     ],
     category: 'Mobile',
-    status: 'Ongoing',
+    // status: 'Ongoing',
   },
   {
     id: 5,
@@ -109,7 +110,7 @@ export const education: Education[] = [
     degree: 'Diploma – ECE',
     institution: 'Nigama Engineering College',
     duration: '2016–2019',
-    location: '',
+    location: 'Karimnagar',
   },
   {
     degree: 'SSC',
@@ -120,24 +121,43 @@ export const education: Education[] = [
 ];
 
 export const certificates: Certificate[] = [
+//   {
+//     title: 'Mentor – Guided interns in Java, DSA, Design Principles',
+//     organization: 'Professional Development',
+//   },
+ {
+  title: 'Full Stack Java Developer',
+  organization: 'JSpiders Institute',
+  description: 'Completed full stack Java development training, covering Java, Spring Boot, SQL, and front-end technologies.',
+},
+
   {
-    title: 'Mentor – Guided interns in Java, DSA, Design Principles',
-    organization: 'Professional Development',
-  },
-  {
-    title: 'Full Stack Developer',
-    organization: 'JSpiders Institute',
-  },
-  {
-    title: 'HackerRank Internship Certificate',
+    title: 'HackerRank Software Engineer Intern',
     organization: 'HackerRank',
     id: 'B83B42E00356',
+    issued: 'Jan 2024',
+    skills: ['Java', 'MySQL'],
+  },
+  {
+    title: 'HackerRank Certified SQL',
+    organization: 'HackerRank',
+    id: '4E0CB02E359E',
+    issued: 'Aug 2023',
+    skills: ['Oracle SQL Developer', 'SQL'],
+  },
+  {
+    title: 'HackerRank Certificate Java (Basic)',
+    organization: 'HackerRank',
+    id: '5DB24220832F',
+    issued: 'Jul 2023',
+    skills: ['Core Java'],
   },
   {
     title: '6-month Industrial Training',
     organization: 'Grepthor Software Solutions',
   },
 ];
+
 
 export const contactInfo = {
   email: 'rohithmamidala369@gmail.com',
@@ -151,5 +171,5 @@ export const personalInfo = {
   role: 'Full Stack Developer',
   tagline: 'Java | Spring Boot | React | React Native | SQL | Microservices',
   about:
-    'Experienced Full Stack Developer with hands-on expertise in building scalable, secure, and high-performance applications using Java, Spring Boot, Microservices, React, React Native, PostgreSQL, MySQL, MongoDB, and Android Studio. Strong background in enterprise-grade development, REST API design, and secure architectures (HIPAA, GDPR). I build applications with professional coding standards, clean architecture, and optimized performance. Available for freelance development and collaboration on high-impact projects.',
+    'Experienced Full Stack Developer with hands-on expertise in building scalable, secure, and high-performance applications using Java, Spring Boot, Microservices, React, React Native, PostgreSQL, MySQL, MongoDB, and Android Studio. Strong background in enterprise-grade development, REST API design, and secure architectures (HIPAA, GDPR). I build applications with professional coding standards, clean architecture, and optimized performance. Available for development collaboration on high-impact projects.',
 };

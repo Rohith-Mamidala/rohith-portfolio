@@ -106,6 +106,11 @@ const Education = () => {
                     <h4 className="cert-title">{cert.title}</h4>
                     <p className="cert-org">{cert.organization}</p>
                     {cert.id && <p className="cert-id">ID: {cert.id}</p>}
+                    {cert.issued && <p className="cert-issued">Issued: {cert.issued}</p>}
+                    {cert.skills && cert.skills.length > 0 && (
+                        <p className="cert-skills">Skills: {cert.skills.join(', ')}</p>
+                    )}
+                    {cert.description && <p className="cert-description">{cert.description}</p>}
                   </div>
                 </motion.div>
               ))}
