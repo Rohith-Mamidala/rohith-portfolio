@@ -107,7 +107,6 @@ export const projects: Project[] = [
       "Optimized React UI for performance and scalability",
     ],
     category: "Web",
-    status: "Completed",
   },
   {
     id: 6,
