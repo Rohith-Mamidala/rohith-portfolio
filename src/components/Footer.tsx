@@ -1,80 +1,85 @@
-import { Heart, Mail, Phone, Linkedin } from 'lucide-react';
+import { Heart, Mail, ArrowUp } from 'lucide-react';
+import { FaLinkedin } from 'react-icons/fa';
 import { contactInfo, personalInfo } from '../data/portfolioData';
-import '../styles/Footer.scss';
+
+const NAV_LINKS = ['home', 'about', 'projects', 'education', 'contact'];
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-content">
-          <div className="footer-brand">
-            <h3 className="footer-logo" onClick={handleScrollToTop}>
-              {personalInfo.name}
-            </h3>
-            <p className="footer-tagline">{personalInfo.role}</p>
-            <p className="footer-description">
-              Building scalable, secure, and high-performance applications
-            </p>
+    <footer className="relative border-t border-white/[0.05] py-12 overflow-hidden">
+      <div className="absolute inset-0 dot-grid opacity-[0.12] pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+
+          {/* Brand */}
+          <div className="text-center md:text-left">
+            <button
+              onClick={scrollTop}
+              className="group inline-flex items-center gap-2.5 mb-2"
+            >
+              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold font-display text-xs">
+                RM
+              </span>
+              <span className="font-display font-semibold text-white group-hover:text-indigo-400 transition-colors duration-200 text-sm">
+                {personalInfo.name}
+              </span>
+            </button>
+            <p className="text-slate-500 text-xs">{personalInfo.role}</p>
           </div>
 
-          <div className="footer-links">
-            <h4 className="footer-title">Quick Links</h4>
-            <nav className="footer-nav">
-              <a href="#home" className="footer-link">
-                Home
-              </a>
-              <a href="#about" className="footer-link">
-                About
-              </a>
-              <a href="#projects" className="footer-link">
-                Projects
-              </a>
-              <a href="#education" className="footer-link">
-                Education
-              </a>
-              <a href="#contact" className="footer-link">
-                Contact
-              </a>
-            </nav>
-          </div>
-
-          <div className="footer-contact">
-            <h4 className="footer-title">Get In Touch</h4>
-            <div className="footer-contact-items">
-              <a href={`mailto:${contactInfo.email}`} className="footer-contact-item">
-                <Mail size={16} />
-                {contactInfo.email}
-              </a>
-              <a href={`tel:${contactInfo.phone}`} className="footer-contact-item">
-                <Phone size={16} />
-                {contactInfo.phone}
-              </a>
-            </div>
-            <div className="footer-social">
+          {/* Nav */}
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {NAV_LINKS.map((link) => (
               <a
-                href={contactInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label="LinkedIn"
+                key={link}
+                href={`#${link}`}
+                className="text-slate-500 hover:text-white text-sm capitalize transition-colors duration-200 hover:underline underline-offset-4"
               >
-                <Linkedin size={20} />
+                {link}
               </a>
-            </div>
+            ))}
+          </nav>
+
+          {/* Social + scroll top */}
+          <div className="flex items-center gap-2">
+            <a
+              href={contactInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-9 h-9 rounded-xl glass border border-white/[0.07] flex items-center justify-center text-slate-400 hover:text-white hover:border-indigo-500/30 transition-all duration-200"
+            >
+              <FaLinkedin size={15} />
+            </a>
+            <a
+              href={`mailto:${contactInfo.email}`}
+              aria-label="Email"
+              className="w-9 h-9 rounded-xl glass border border-white/[0.07] flex items-center justify-center text-slate-400 hover:text-white hover:border-indigo-500/30 transition-all duration-200"
+            >
+              <Mail size={15} />
+            </a>
+            <button
+              onClick={scrollTop}
+              aria-label="Scroll to top"
+              className="w-9 h-9 rounded-xl glass border border-white/[0.07] flex items-center justify-center text-slate-400 hover:text-white hover:border-indigo-500/30 transition-all duration-200"
+            >
+              <ArrowUp size={15} />
+            </button>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p className="footer-copyright">
-            {currentYear} {personalInfo.name}. Built with <Heart size={14} className="heart-icon" /> using React, TypeScript & SCSS
+        {/* Bottom bar */}
+        <div className="mt-8 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-600">
+          <p className="flex items-center gap-1.5">
+            © {year} {personalInfo.name}. Built with
+            <Heart size={11} className="text-rose-500 fill-rose-500" />
+            using React, TypeScript &amp; Tailwind CSS
           </p>
-          {/* <p className="footer-availability">Available for Freelance Projects</p> */}
+          <p className="font-mono">v2.0</p>
         </div>
       </div>
     </footer>

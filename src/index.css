@@ -1,46 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* ── Design tokens ─────────────────────────────────────────────────── */
+:root {
+  --bg:            #020817;
+  --bg-secondary:  #0d1424;
+  --indigo:        #6366f1;
+  --violet:        #8b5cf6;
+  --cyan:          #22d3ee;
+  --border:        rgba(255, 255, 255, 0.06);
+  --card-bg:       rgba(13, 20, 36, 0.75);
+
+  /* Theme-aware tokens (override per theme) */
+  --color-bg:      #020817;
+  --color-text:    #e2e8f0;
+}
+
+html.light {
+  --bg:            #f0f4ff;
+  --color-bg:      #f0f4ff;
+  --color-text:    #1e293b;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--color-text);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0f172a;
-  color: #f8fafc;
-  overflow-x: hidden;
 }
 
-.app {
-  min-height: 100vh;
-  width: 100%;
+/* Subtle radial glow at page top */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-
+/* ── Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 5px;
+  background: linear-gradient(180deg, var(--indigo), var(--violet));
+  border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #1e40af;
+/* ── Selection ─────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(99, 102, 241, 0.28);
+  color: #f1f5f9;
+}
+
+/* ── Utilities ─────────────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #67e8f9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated shimmer text */
+  .text-shimmer {
+    background: linear-gradient(90deg, #818cf8, #67e8f9, #a78bfa, #818cf8);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Glass card */
+  .glass {
+    background: rgba(13, 20, 36, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Dot grid background */
+  .dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* Card base — used on all cards */
+  .card {
+    background: rgba(13, 20, 36, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: rgba(99, 102, 241, 0.32);
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.08), 0 4px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Section container */
+  .section-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+}
+
+/* ── Theme-aware wrapper bg ─────────────────────────────────────────── */
+.theme-bg {
+  background: var(--color-bg);
+  transition: background 0.35s ease;
+}
+
+/* ── Floating label form inputs ─────────────────────────────────────── */
+.fl-group {
+  position: relative;
+}
+
+.fl-group input,
+.fl-group textarea {
+  width: 100%;
+  padding: 22px 16px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  outline: none;
+  resize: none;
+}
+
+.fl-group input::placeholder,
+.fl-group textarea::placeholder {
+  color: transparent;
+}
+
+.fl-group input:focus,
+.fl-group textarea:focus {
+  border-color: rgba(99, 102, 241, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+.fl-group label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  background: transparent;
+}
+
+.fl-group textarea ~ label {
+  top: 18px;
+  transform: none;
+}
+
+/* Raised state: focused or has content */
+.fl-group input:focus ~ label,
+.fl-group input:not(:placeholder-shown) ~ label,
+.fl-group textarea:focus ~ label,
+.fl-group textarea:not(:placeholder-shown) ~ label {
+  top: 8px;
+  transform: none;
+  font-size: 0.7rem;
+  color: #6366f1;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   LIGHT MODE — activated by <html class="light">
+   ═══════════════════════════════════════════════════════════════════ */
+
+html.light body::before {
+  background: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+}
+
+/* ── Utility overrides ─────────────────────────── */
+
+html.light .glass {
+  background: rgba(248, 250, 255, 0.88) !important;
+  border-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+html.light .card {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(99, 102, 241, 0.1) !important;
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .card:hover {
+  border-color: rgba(99, 102, 241, 0.28) !important;
+  box-shadow: 0 0 32px rgba(99, 102, 241, 0.07), 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .dot-grid {
+  background-image: radial-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px) !important;
+}
+
+html.light .text-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Heading / text color overrides ─────────────── */
+
+html.light .text-white   { color: #0f172a !important; }
+html.light .text-slate-100,
+html.light .text-slate-200,
+html.light .text-slate-300 { color: #1e293b !important; }
+html.light .text-slate-400 { color: #475569 !important; }
+html.light .text-slate-500 { color: #64748b !important; }
+html.light .text-slate-600 { color: #94a3b8 !important; }
+
+/* Hover text */
+html.light .hover\:text-white:hover  { color: #0f172a !important; }
+html.light .hover\:text-slate-200:hover { color: #1e293b !important; }
+
+/* ── Accent colors — darker shades for light-bg contrast ── */
+
+html.light .text-indigo-300 { color: #3730a3 !important; }
+html.light .text-indigo-400 { color: #4f46e5 !important; }
+html.light .text-violet-300 { color: #5b21b6 !important; }
+html.light .text-violet-400 { color: #7c3aed !important; }
+html.light .text-cyan-300   { color: #0369a1 !important; }
+html.light .text-cyan-400   { color: #0891b2 !important; }
+html.light .text-emerald-300 { color: #047857 !important; }
+html.light .text-emerald-400 { color: #059669 !important; }
+html.light .text-amber-300  { color: #b45309 !important; }
+html.light .text-amber-400  { color: #d97706 !important; }
+html.light .text-blue-300   { color: #1d4ed8 !important; }
+html.light .text-blue-400   { color: #2563eb !important; }
+
+html.light .hover\:text-indigo-300:hover { color: #3730a3 !important; }
+
+/* ── Border overrides ────────────────────────────── */
+
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.07\],
+html.light .border-white\/\[0\.08\],
+html.light .border-white\/\[0\.09\],
+html.light .border-white\/\[0\.1\],
+html.light .border-white\/10 { border-color: rgba(0, 0, 0, 0.08) !important; }
+
+html.light .border-white\/\[0\.12\] { border-color: rgba(0, 0, 0, 0.1) !important; }
+
+/* ── Background overrides ────────────────────────── */
+
+html.light .bg-white\/\[0\.04\],
+html.light .bg-white\/\[0\.05\],
+html.light .bg-white\/\[0\.06\],
+html.light .bg-white\/\[0\.07\] { background-color: rgba(0, 0, 0, 0.04) !important; }
+
+/* Nav active pill needs a subtle colored tint on light bg */
+html.light [data-nav-pill] {
+  background: rgba(99, 102, 241, 0.08) !important;
+  border-color: rgba(99, 102, 241, 0.18) !important;
+}
+
+/* ── Glow shadows — reduced on light bg ─────────── */
+
+html.light .shadow-glow    { box-shadow: 0 0 20px rgba(99, 102, 241, 0.14) !important; }
+html.light .shadow-glow-lg { box-shadow: 0 0 40px rgba(99, 102, 241, 0.18) !important; }
+
+/* ── Scrollbar ───────────────────────────────────── */
+
+html.light ::-webkit-scrollbar-track { background: #f0f4ff; }
+
+/* ── Marquee fades ───────────────────────────────── */
+
+html.light .marquee-fade-l {
+  background: linear-gradient(to right, #f0f4ff, transparent) !important;
+}
+html.light .marquee-fade-r {
+  background: linear-gradient(to left, #f0f4ff, transparent) !important;
+}
+
+/* ── Hero photo overlay ──────────────────────────── */
+
+html.light .hero-photo-overlay {
+  background: linear-gradient(to top, rgba(240, 244, 255, 0.35), transparent) !important;
+}
+
+/* ── Tech stack marquee pill items ───────────────── */
+
+html.light .tech-pill {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-color: rgba(99, 102, 241, 0.12) !important;
+  color: #475569 !important;
+}
+
+/* ── Floating label inputs ───────────────────────── */
+
+html.light .fl-group input,
+html.light .fl-group textarea {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-color: rgba(99, 102, 241, 0.15) !important;
+  color: #1e293b !important;
+}
+
+html.light .fl-group input:focus,
+html.light .fl-group textarea:focus {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(99, 102, 241, 0.45) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08) !important;
+}
+
+html.light .fl-group label { color: #94a3b8; }
+
+html.light .fl-group input:focus ~ label,
+html.light .fl-group input:not(:placeholder-shown) ~ label,
+html.light .fl-group textarea:focus ~ label,
+html.light .fl-group textarea:not(:placeholder-shown) ~ label {
+  color: #4f46e5;
 }

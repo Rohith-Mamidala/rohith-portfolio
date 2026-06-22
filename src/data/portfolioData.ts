@@ -9,6 +9,8 @@ export const skills: Skill[] = [
       "Spring Security",
       "JWT Auth",
       "Microservices",
+      "Node.js",
+      "Express.js",
     ],
   },
   {
@@ -23,7 +25,7 @@ export const skills: Skill[] = [
   },
   {
     category: "Mobile",
-    items: ["Android Studio (Java)", "React Native CLI", "iOS & Android"],
+    items: ["Android Studio (Java)", "React Native CLI", "Flutter", "iOS & Android"],
   },
   {
     category: "Database",
@@ -40,6 +42,10 @@ export const skills: Skill[] = [
   {
     category: "Architecture",
     items: ["REST APIs", "MVC", "OOP", "Design Patterns"],
+  },
+  {
+    category: "AI / LLM",
+    items: ["OpenAI API", "RAG Model", "LLM (Ollama)", "Whisper AI", "Prompt Engineering"],
   },
 ];
 
@@ -80,7 +86,6 @@ export const projects: Project[] = [
       "Part of a 9-member team, handling schema + performance tuning",
     ],
     category: "Web",
-    status: "Ongoing",
   },
   {
     id: 4,
